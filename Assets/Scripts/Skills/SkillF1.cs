@@ -5,7 +5,6 @@ using UnityEngine;
 public class SkillF1 : SkillSystemRoot
 {
     protected override bool Init()
-    {
         if (!base.Init())
         {
             return false;
