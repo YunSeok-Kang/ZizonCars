@@ -18,7 +18,6 @@ public class FollowerCam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-
         Vector3 curCamPos = transform.position;
 
 		if (followPosX)
