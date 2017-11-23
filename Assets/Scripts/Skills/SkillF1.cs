@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkillF1 : SkillSystemRoot
 {
     private Rigidbody vehicleRigidbody = null;
+    public float booster = 0.0f;
 
     protected override bool Init()
     {
@@ -24,7 +25,7 @@ public class SkillF1 : SkillSystemRoot
         if (!Init()) { Debug.LogWarning(gameObject.name + "가 초기화 도중 오류 발생."); return; }
 
         // Todo : 스킬에 추가하고싶은 내용 추가. 
-        vehicleRigidbody.AddRelativeForce(Vector3.forward * 100000);
+        vehicleRigidbody.AddRelativeForce(Vector3.forward * booster);
 
         /* 해당 주석의 내용은 보기 불편할 시 바로 삭제할 것.
          * 
