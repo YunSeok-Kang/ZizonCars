@@ -21,18 +21,19 @@ public class BattleModule : MonoBehaviour
     void FixedUpdate()
     {
         RaycastHit hit;
-        Vector3 localForward = transform.InverseTransformDirection(transform.forward);
+        Vector3 localForward = this.transform.forward;
 
-        Physics.Raycast(transform.position, localForward, out hit, 100, 0);
+        Debug.DrawRay(transform.position, localForward, Color.blue, rayDist);
+        //Physics.Raycast(transform.position, localForward, out hit, 100, 0);
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Vector3 destination = transform.position + this.transform.forward * 10;
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Vector3 destination = transform.position + this.transform.forward * 10;
 
         
 
-        Gizmos.DrawLine(transform.position, destination);
-    }
+    //    Gizmos.DrawLine(transform.position, destination);
+    //}
 }
