@@ -54,7 +54,7 @@ public class DrivingModule : MonoBehaviour {
         {
             vehicleRigidbody.AddRelativeForce(Vector3.forward * accerationForce * forceUnit);
             //Debug.Log(vehicleRigidbody.velocity.magnitude);
-            Debug.Log(currentRotation.y);
+            Debug.Log(vehicleRigidbody.velocity.magnitude);
         }
 
         if(Input.GetKey(KeyCode.Space)) // speed down
