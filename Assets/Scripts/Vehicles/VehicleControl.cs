@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VehicleControl : MonoBehaviour {
 
+    public GameObject vehicleFront = null;
 
 	// Use this for initialization
 	void Start ()
