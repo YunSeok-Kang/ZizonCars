@@ -26,13 +26,36 @@ public class BattleModule : MonoBehaviour
 
     void FixedUpdate()
     {
-        RaycastHit hit;
+        //RaycastHit hit;
+        RaycastHit[] hits;
         Vector3 localForward = this.transform.forward;
 
         //Physics.Raycast(transform.position, localForward, rayDist, LayerMask.GetMask("Obstacle"));
-        if (Physics.Raycast(transform.position, localForward, out hit, rayDist, rayingLayer))//LayerMask.GetMask("Player")))
+        //if (Physics.Raycast(transform.position, localForward, out hit, rayDist, rayingLayer))//LayerMask.GetMask("Player")))
+        hits = Physics.RaycastAll(transform.position, localForward, rayDist, rayingLayer);
+        //if (Physics.RaycastAll(transform.position, localForward, out hits, rayDist, rayingLayer))
+        if (hits.Length > 0)
         {
-            Debug.Log(hit.collider.gameObject.name);
+            foreach (RaycastHit hit in hits)
+            {
+                //Debug.Log(LayerMask. hit.collider.gameObject.layer);
+
+                // 발사한 레이가 차량 자기 자신의 콜리더에 맞으면 안되기에 처리.
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Players"))
+                {
+                    if (!hit.collider.gameObject.Equals(vehicleControl.gameObject))
+                    {
+                        Debug.Log(hit.collider.gameObject.name);
+                    }
+                }
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("VehicleFront"))
+                {
+                    if (!hit.collider.gameObject.Equals(vehicleControl.vehicleFront))
+                    {
+                        Debug.Log(hit.collider.gameObject.name);
+                    }
+                }
+            } 
         }
 
         Debug.DrawRay(transform.position, localForward, Color.blue, rayDist);
