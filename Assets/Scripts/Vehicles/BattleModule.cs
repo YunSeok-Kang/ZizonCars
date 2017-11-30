@@ -7,7 +7,7 @@ public class BattleModule : MonoBehaviour
     public VehicleControl vehicleControl = null;
 
     public LayerMask rayingLayer;
-    public int rayDist = 10;
+    public float rayDist = 1;
 
     // Use this for initialization
     void Start()
@@ -45,20 +45,20 @@ public class BattleModule : MonoBehaviour
                 {
                     if (!hit.collider.gameObject.Equals(vehicleControl.gameObject))
                     {
-                        Debug.Log(hit.collider.gameObject.name);
+                        Debug.Log("추돌!");
                     }
                 }
                 else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("VehicleFront"))
                 {
                     if (!hit.collider.gameObject.Equals(vehicleControl.vehicleFront))
                     {
-                        Debug.Log(hit.collider.gameObject.name);
+                        Debug.Log("정면추돌!");
                     }
                 }
             } 
         }
 
-        Debug.DrawRay(transform.position, localForward, Color.blue, rayDist);
+        Debug.DrawRay(transform.position, localForward * rayDist, Color.blue, 3f);
         //Physics.Raycast(transform.position, localForward, out hit, 100, 0);
     }
 
