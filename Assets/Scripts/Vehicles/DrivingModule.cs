@@ -28,12 +28,19 @@ public class DrivingModule : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+     
+    }
+
+    // go forward part
+    void FixedUpdate()
+    {
         Vector3 currentRotation = transform.localRotation.eulerAngles;
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             currentRotation.y -= (rotationRatio * Time.deltaTime);
             //vehicleRigidbody.AddRelativeForce(Vector3.left * vehicleRigidbody.velocity.magnitude / 6 * forceUnit);
-            if(vehicleRigidbody.velocity.magnitude > minSpeed)
+            if (vehicleRigidbody.velocity.magnitude > minSpeed)
                 vehicleRigidbody.AddRelativeForce(Vector3.back * deAccerationForce * forceUnit);
         }
         if (Input.GetKey(KeyCode.RightArrow))
@@ -44,26 +51,22 @@ public class DrivingModule : MonoBehaviour {
                 vehicleRigidbody.AddRelativeForce(Vector3.back * deAccerationForce * forceUnit);
         }
         transform.localRotation = Quaternion.Euler(currentRotation);
-    }
 
-    // go forward part
-    void FixedUpdate()
-    {
-        Vector3 currentRotation = transform.localRotation.eulerAngles;
+        if (Input.GetKey(KeyCode.Space)) // break
+        {
+            vehicleRigidbody.AddRelativeForce(Vector3.back * deAccerationForce * 17/10 * forceUnit);
+        }
+
         if (vehicleRigidbody.velocity.magnitude < maxSpeed)
         {
             vehicleRigidbody.AddRelativeForce(Vector3.forward * accerationForce * forceUnit);
             //Debug.Log(vehicleRigidbody.velocity.magnitude);
-            Debug.Log(vehicleRigidbody.velocity.magnitude);
+            Debug.Log("NOW speeed : " + vehicleRigidbody.velocity.magnitude);
         }
         else if(vehicleRigidbody.velocity.magnitude > maxSpeed) // speed down
         {
             vehicleRigidbody.AddRelativeForce(Vector3.back * accerationForce * forceUnit);
         }
-
-        if(Input.GetKey(KeyCode.Space)) // break
-        {
-            vehicleRigidbody.AddRelativeForce(Vector3.back * deAccerationForce * 3/2 * forceUnit);
-        }
+        
     }
 }
