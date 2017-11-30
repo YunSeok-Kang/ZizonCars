@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class BattleModule : MonoBehaviour
 {
+<<<<<<< HEAD
+    public int rayDist = 10;
+=======
     public VehicleControl vehicleControl = null;
 
     public LayerMask rayingLayer;
     public float rayDist = 1;
+>>>>>>> 9a3683312d219c804662847f1d7608ccc11d029e
 
     // Use this for initialization
     void Start()
     {
-        if (vehicleControl == null)
-        {
-            vehicleControl = gameObject.GetComponent<VehicleControl>();
-        }
+
     }
 
     // Update is called once per frame
@@ -26,10 +27,12 @@ public class BattleModule : MonoBehaviour
 
     void FixedUpdate()
     {
-        //RaycastHit hit;
-        RaycastHit[] hits;
+        RaycastHit hit;
         Vector3 localForward = this.transform.forward;
 
+<<<<<<< HEAD
+        Debug.DrawRay(transform.position, localForward, Color.blue, rayDist);
+=======
         //Physics.Raycast(transform.position, localForward, rayDist, LayerMask.GetMask("Obstacle"));
         //if (Physics.Raycast(transform.position, localForward, out hit, rayDist, rayingLayer))//LayerMask.GetMask("Player")))
         hits = Physics.RaycastAll(transform.position, localForward, rayDist, rayingLayer);
@@ -59,6 +62,7 @@ public class BattleModule : MonoBehaviour
         }
 
         Debug.DrawRay(transform.position, localForward * rayDist, Color.blue, 3f);
+>>>>>>> 9a3683312d219c804662847f1d7608ccc11d029e
         //Physics.Raycast(transform.position, localForward, out hit, 100, 0);
     }
 
